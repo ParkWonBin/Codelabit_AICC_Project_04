@@ -1,0 +1,242 @@
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+a {
+  text-decoration: none;
+}
+
+.wrap {
+  display: flex;
+  padding: 40px 0;
+  background-color: #a8c0d6;
+  flex-direction: column;
+  height: 100vh;
+}
+
+.search-bar {
+  display: flex;
+  gap: 10px;
+  width: 100%;
+  padding: 10px 20px;
+  background-color: #fff;
+}
+
+.search-bar input {
+  flex: 1;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  height: 45px;
+}
+
+.search-bar button {
+  padding: 10px 20px;
+  border: none;
+  background-color: #007bff;
+  color: white;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.search-bar button:hover {
+  background-color: #0056b3;
+}
+
+.friend-list {
+  width: 100%;
+  background-color: #fff;
+  padding: 20px;
+  overflow-y: auto;
+  flex-grow: 1;
+}
+
+.friend {
+  padding: 10px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  margin-bottom: 10px;
+}
+
+.friend:hover {
+  background-color: #f0f0f0;
+}
+
+.friend.selected {
+  background-color: #ddd;
+}
+
+.chat-window {
+  flex-grow: 1;
+  background-color: #a8c0d6;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.chat-header {
+  padding: 10px;
+  background-color: #77abe2;
+  color: #fff;
+  font-weight: bold;
+}
+
+.chat-messages {
+  flex-grow: 1;
+  overflow-y: auto;
+}
+
+.chat {
+  display: flex;
+  align-items: flex-start;
+}
+
+.chat .icon {
+  position: relative;
+  overflow: hidden;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background-color: #eee;
+}
+
+.chat .icon i {
+  position: absolute;
+  top: 10px;
+  left: 50%;
+  font-size: 2.5rem;
+  color: #aaa;
+  transform: translateX(-50%);
+}
+
+.chat .textbox {
+  position: relative;
+  display: inline-block;
+  max-width: calc(100% - 70px);
+  padding: 10px;
+  margin-top: 7px;
+  font-size: 13px;
+  border-radius: 10px;
+}
+
+.chat .textbox::before {
+  position: absolute;
+  display: block;
+  top: 0;
+  font-size: 1.5rem;
+}
+
+.chat .ch1 .textbox {
+  margin-left: 20px;
+  background-color: #e9cb24;
+  color: #333;
+}
+
+.chat .ch1 .textbox::before {
+  left: -15px;
+  content: "◀";
+  color: #ddd;
+}
+
+.chat .ch2 .textbox {
+  margin-right: 20px;
+  background-color: #fff;
+  color: #333;
+}
+
+.chat .ch2 .textbox::before {
+  right: -15px;
+  content: "▶";
+  color: #aaa;
+}
+
+.chat-input {
+  display: flex;
+  margin-top: 10px;
+}
+
+.chat-input input {
+  flex: 1;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  margin-right: 10px;
+}
+
+.chat-input button {
+  padding: 10px 20px;
+  border: none;
+  background-color: #e7d850;
+  color: #fff;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.no-chat {
+  text-align: center;
+  padding: 20px;
+  background-color: #f1f1f1;
+}
+
+@media (min-width: 600px) {
+  .wrap {
+    flex-direction: row;
+  }
+
+  .friend-list {
+    width: 300px;
+    height: 100%;
+    overflow-y: auto;
+  }
+
+  .chat-window {
+    width: calc(100% - 300px);
+    height: 100%;
+  }
+}
+
+
+.chat {
+  display: flex;
+  margin: 10px 0;
+}
+
+.ch1 {
+  justify-content: flex-end;
+}
+
+.ch2 {
+  justify-content: flex-start;
+}
+
+.icon {
+  display: flex;
+  align-items: center;
+  margin-right: 5px;
+}
+
+.textbox {
+  padding: 8px;
+  border-radius: 8px;
+  background-color: #ffffff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  max-width: 70%;
+}
+
+.ch1 .textbox {
+  background-color: #ffffcc; /* 노란색 말풍선 */
+}
+
+.ch2 .textbox {
+  background-color: #ffffff; /* 흰색 말풍선 */
+}
+
+.message-sender {
+  font-size: 12px;
+  margin-bottom: 3px;
+  color: #888888;
+}
