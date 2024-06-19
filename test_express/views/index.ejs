@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title style="color: floralwhite">로그인/회원가입</title>
+    <style>
+        body {
+            background-image: url("../img/coffee.jpg");
+            background-size: cover;
+        }
+        div {
+            display: flex;
+            justify-content: center;
+            flex-direction: column;
+            align-items: center;
+            height: 100vh; /* 화면의 세로 크기의 100% */
+        }
+        button {
+            width: 100px;
+            height: 30px;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <form action="/userCreate" method="get">
+            <button type="sumit">회원가입</button>
+        </form>
+        <br>
+        <form action="/userLogin" method="get">
+            <button type="submit">로그인</button>
+        </form>
+    </div>
+</body>
+</html>

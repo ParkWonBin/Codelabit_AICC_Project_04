@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>마이페이지</title>
+    <style>
+        body {
+            background-image: url("../img/coffee.jpg");
+            background-size: cover;
+        }
+        div {
+            display: flex;
+            justify-content: center;
+            flex-direction: column;
+            align-items: center;
+            height: 100vh; /* 화면의 세로 크기의 100% */
+        }
+        button {
+            width: 100px;
+            height: 30px;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <form action="/userPwChange" method="get">
+            <button type="submit">암호변경</button>
+        </form>
+        <br>
+        <form action="/userDelete" method="get">
+            <button type="submit">회원탈퇴</button>
+        </form>
+    </div>
+</body>
+</html>

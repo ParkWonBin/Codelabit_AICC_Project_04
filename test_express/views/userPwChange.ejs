@@ -1,0 +1,44 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>비밀번호 변경</title>
+    <style>
+        body {
+            background-image: url("../img/coffee.jpg");
+            background-size: cover;
+        }
+        div {
+            display: flex;
+            justify-content: center;
+            flex-direction: column;
+            align-items: center;
+            height: 100vh; /* 화면의 세로 크기의 100% */
+        }
+        button {
+            width: 100px;
+            height: 30px;
+        }
+        label {
+            color: floralwhite;
+        }
+        input {
+            width: 200px;
+            height: 30px;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <form action="/userPwChange" method="post">
+            <label>Password:</label><br>
+            <input type="password" name="password"><br>
+            <label>newPassword:</label><br>
+            <input type="password" name="newPassword"><br>
+            <label>confirmNewPassword:</label><br>
+            <input type="password" name="confirmNewPassword"><br><br>
+            <button type="submit">비밀번호 변경</button>
+        </form>
+    </div>
+</body>
+</html>

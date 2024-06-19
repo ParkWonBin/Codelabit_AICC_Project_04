@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>회원가입</title>
+    <style>
+        body {
+            background-image: url("../img/coffee.jpg");
+            background-size: cover;
+        }
+        div {
+            display: flex;
+            justify-content: center;
+            flex-direction: column;
+            align-items: center;
+            height: 100vh; /* 화면의 세로 크기의 100% */
+        }
+        button {
+            width: 100px;
+            height: 30px;
+        }
+        label {
+            color: floralwhite;
+        }
+        input {
+            width: 200px;
+            height: 30px;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <form action="/userCreate" method="post">
+            <label>NAME:</label><br>
+            <input type="text" name="username"><br>
+            <label>PASSWORD:</label><br>
+            <input type="password" name="password"><br>
+            <label>PASSWORD 확인:</label><br>
+            <input type="password" name="confirmPassword"><br><br>
+            <button type="submit">회원가입</button>
+        </form>
+    </div>
+</body>
+</html>

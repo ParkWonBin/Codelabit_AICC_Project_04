@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>글쓰기</title>
+    <style>
+        body {
+            background-image: url("../img/coffee.jpg");
+            background-size: cover;
+        }
+        div {
+            display: flex;
+            justify-content: center;
+            flex-direction: column;
+            align-items: center;
+            height: 100vh; /* 화면의 세로 크기의 100% */
+        }
+        button {
+            width: 100px;
+            height: 30px;
+        }
+        label {
+            color: floralwhite;
+        }
+        input {
+            width: 200px;
+            height: 30px;
+        }
+        textarea {
+            width: 300px;
+            height: 300px;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <form action="/postCreate" method="post">
+            <label>POSTID:</label><br>
+            <input type="text" name="postid"><br>
+            <label>TITLE:</label><br>
+            <input type="text" name="title"><br>
+            <label>CONTENT:</label><br>
+            <textarea name="content"></textarea>
+            <button type="submit">글쓰기</button>
+        </form>
+    </div>
+</body>
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>메인페이지</title>
+    <style>
+        body {
+            background-image: url("../img/coffee.jpg");
+            background-size: cover;
+        }
+        div {
+            display: flex;
+            justify-content: center;
+            flex-direction: column;
+            align-items: center;
+            height: 100vh; /* 화면의 세로 크기의 100% */
+        }
+        button {
+            width: 100px;
+            height: 30px;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <form action="/postCreate" method="get">
+            <button type="submit">글쓰기</button>
+        </form>
+        <br>
+        <form action="/postRead" method="get">
+            <button type="submit">게시글 조회</button>
+        </form>
+        <br>
+        <form action="/myPage" method="get">
+            <button type="submit">마이페이지</button>
+        </form>
+        <br>
+        <form action="/postMain" method="podst">
+            <button type="submit">로그아웃</button>
+        </form>
+    </div>
+</body>
+</html>

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>게시판</title>
+    <style>
+        body {
+            background-image: url("../img/coffee.jpg");
+            background-size: cover;
+        }
+        div {
+            display: flex;
+            justify-content: center;
+            flex-direction: column;
+            align-items: center;
+            height: 100vh; /* 화면의 세로 크기의 100% */
+        }
+        button {
+            width: 100px;
+            height: 30px;
+        }
+        label {
+            color: floralwhite;
+        }
+        input {
+            width: 200px;
+            height: 30px;
+        }
+        textarea {
+            width: 300px;
+            height: 300px;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <form action="/postUpdate" method="post">
+            <input type="hidden" name="postid" value="<%= postid %>">
+
+            <label>TITLE:</label><br>
+            <input type="text" name="title" value="<%= title %>"><br>
+
+            <label>CONTENT:</label><br>
+            <textarea name="content"><%= content %></textarea>
+            <buttono type="submit"> 글 수정</buttono>
+        </form>
+    </div>
+</body>
+</html>

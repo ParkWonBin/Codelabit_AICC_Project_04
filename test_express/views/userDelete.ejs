@@ -1,0 +1,44 @@
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <style>
+        body {
+            background-image: url("../img/coffee.jpg");
+            background-size: cover;
+        }
+        div {
+            display: flex;
+            justify-content: center;
+            flex-direction: column;
+            align-items: center;
+            height: 100vh; /* 화면의 세로 크기의 100% */
+        }
+        button {
+            width: 100px;
+            height: 30px;
+        }
+        label {
+            color: floralwhite;
+        }
+        input {
+            width: 200px;
+            height: 30px;
+        }
+    </style>
+</head>
+<body>
+<div>
+    <!--<h2>회원탈퇴</h2>-->
+    <form action="/userDelete" method="post">
+        <!--    <label>username:</label><br>-->
+        <!--    <input type="text" name="username"><br>-->
+        <label>Password:</label><br>
+        <input type="password" name="password"><br>
+        <label>confirmPassword:</label><br>
+        <input type="password" name="confirmPassword"><br><br>
+        <button type="submit">회원탈퇴</button>
+    </form>
+</div>
+</body>
+</html>

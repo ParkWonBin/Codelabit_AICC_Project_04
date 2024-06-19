@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title style="color: white">게시판</title>
+    <style>
+        body {
+            background-image: url("../img/coffee.jpg");
+            background-size: cover;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+
+        }
+        th, td {
+            border: 1px solid black;
+            padding: 8px;
+            text-align: left;
+            color: floralwhite;
+        }
+        th {
+            color: white;
+            text-align: center;
+            background-color: black;
+        }
+        #dedate {
+            border: 1px solid black;
+            width: 60px;
+        }
+    </style>
+</head>
+<body>
+    <table>
+        <thead>
+            <tr>
+                <th style="width: 50px">글번호</th>
+                <th style="width: 150px">글제목</th>
+                <th style="width: auto">글내용</th>
+                <th style="width: 50px">글쓴이</th>
+                <th style="width: 60px"></th>
+            </tr>
+        </thead>
+        <tbody>
+            <% posts.data.forEach(post => { %>
+                <tr>
+                    <td style="text-align: center"><%= post.postid %></td>
+                    <td><%= post.title %></td>
+                    <td><%= post.content %></td>
+                    <td style="text-align: center"><%= post.author %></td>
+                    <td id="dedate">
+                        <% if(username === post.author){ %>
+                            <form action="/postUpdate/edit" method="psot">
+                                <input type="hidden" name="postid" value="<%= post.postid %>"/>
+                                <input type="hidden" name="title" value="<%= post.title %>"/>
+                                <input type="hidden" name="content" value="<%= post.content %>"/>
+                                <button type="submit">글수정</button>
+                            </form>
+
+                            <form action="/postDelete/<%= post.postid %>>" method="post">
+                                <button type="submit">글살제</button>
+                            </form>
+                        <% } %>
+                    </td>
+                </tr>
+            <% }); %>
+        </tbody>
+    </table>
+</body>
+</html>
