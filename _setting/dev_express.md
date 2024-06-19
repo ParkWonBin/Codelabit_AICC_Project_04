@@ -16,6 +16,13 @@ npm init -y
 npm install typescript ts-node @types/node @types/express express
 ```
 
+프로젝트 관련 패지지 설치
+```bash
+npm install dotenv
+npm install oracledb
+
+```
+
 ### 3. TypeScript 설정 파일 생성
 
 ```bash
@@ -120,4 +127,17 @@ declare namespace NodeJS {
 
 ```bash
 npx ts-node src/index.ts
+```
+
+
+---
+# 자료 조사하면서 알게된 것
+typescript express 돌릴 때는 반드시 npx ts-node 로 돌려야한다.  
+npx 빼먹으면 에러남..
+package.json 에 ```npm start``` 등록 잘 해나야한다.
+```json
+...
+  "scripts": {
+    "start": "npx ts-node ./server.ts"
+  },
 ```
