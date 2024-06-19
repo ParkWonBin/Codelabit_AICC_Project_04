@@ -10,7 +10,7 @@ interface PageProps {
 
 const MyPage: React.FC<PageProps> = ({ userInfo, setUserInfo }) => {
   return userInfo.isLoggedIn 
-    ? <MyData userInfo={userInfo} /> 
+    ? <MyData userInfo={userInfo} setUserInfo={setUserInfo} /> 
     : <LoginForm setUserInfo={setUserInfo} />;
 };
 

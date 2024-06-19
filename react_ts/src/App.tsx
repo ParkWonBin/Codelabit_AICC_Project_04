@@ -9,8 +9,11 @@ import Navigation from './components/navigation';
 const App: React.FC = () => {
   const [selectedMenu, setSelectedMenu] = useState<Menu>('chat');
   const [userInfo, setUserInfo] = useState<UserInfo>({
-    username: 'test',
-    isLoggedIn: false,
+    id:-1,
+    username:"",
+    email:"",
+    token:"",
+    isLoggedIn:false
   });
 
   const renderPage = () => {
