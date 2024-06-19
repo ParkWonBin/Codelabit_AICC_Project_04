@@ -20,6 +20,7 @@ npm install express @types/express
 프로젝트 관련 패지지 설치
 ```bash
 npm install dotenv
+npm install cors @types/cors
 npm install bcrypt @types/bcrypt
 npm install jsonwebtoken @types/jsonwebtoken
 npm install oracledb @types/oracledb
@@ -80,7 +81,15 @@ New-Item -Path .\.env -ItemType File
 `.env` 파일:
 
 ```plaintext
-EXPRESS_PORT=4000
+EXPRESS_PORT=4001
+
+DB_USER=your_new_user
+DB_PASSWORD=your_password
+DB_CONNECT_STRING=localhost:1521/xe
+ORACLE_CLIENT=C:\wbpark\util\instantclient_21_13
+
+JWT_SECRET=mysecretkey
+
 ```
 
 ### 8. `src/index.ts` 파일에 기본 Express 서버 코드 작성
@@ -120,10 +129,17 @@ New-Item -Path .\src\@types\env.d.ts -ItemType File
 
 ```typescript
 declare namespace NodeJS {
-  interface ProcessEnv {
-    EXPRESS_PORT?: string;
+    interface ProcessEnv {
+      EXPRESS_PORT?: string;
+
+      DB_USER: string;
+      DB_PASSWORD: string;
+      DB_CONNECT_STRING: string;
+      
+      JWT_SECRET: string;
+    }
   }
-}
+  
 ```
 
 ### 10. 서버 실행

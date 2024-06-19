@@ -3,18 +3,24 @@ import UserService from '../services/UserService';
 
 class UserController {
   static async register(req: Request, res: Response) {
+    console.log(`register : ${JSON.stringify(req.body)}`)
     try {
       const user = await UserService.register(req.body);
+      console.log(`register - complete : ${JSON.stringify(user)}`)
       res.status(201).json(user);
     } catch (error) {
+      console.log(`register - Fail: ${JSON.stringify(error)}`)
       res.status(400).json({ message: (error as any).message });
     }
   }
 
   static async login(req: Request, res: Response) {
+    console.log(`login : ${JSON.stringify(req.body)}`)
     try {
-      const token = await UserService.login(req.body);
-      res.status(200).json({ token });
+      const loginInfo = await UserService.login(req.body);
+      console.log(`loginInfo : ${JSON.stringify(loginInfo)}`)
+
+      res.status(200).json({ loginInfo });
     } catch (error) {
       res.status(401).json({ message: (error as any).message });
     }

@@ -13,17 +13,28 @@ class UserService {
 
   static async login({ username, password }: { username: string; password: string }) {
     const user = await UserModel.findByUsername(username);
+    console.log(`user : ${JSON.stringify(user)}`)
     if (!user) {
       throw new Error('User not found');
     }
+    console.log(`password : ${JSON.stringify(password)}`)
+    console.log(`user.password : ${JSON.stringify(user.password)}`)
     const isPasswordValid = await bcrypt.compare(password, user.password);
+    console.log(`isPasswordValid : ${isPasswordValid}`)
     if (!isPasswordValid) {
       throw new Error('Invalid password');
     }
     const token = jwt.sign({ id: user.id, username: user.username }, jwtConfig.jwtSecret, {
       expiresIn: '1h',
     });
-    return token;
+
+    const loginInfo = {
+      id: user.id,
+      username: user.username,
+      email: user.email,
+      token:token
+    }
+    return loginInfo;
   }
 
   static async delete(userId: number) {

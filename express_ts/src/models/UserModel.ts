@@ -4,6 +4,7 @@ import { User } from '../types/User';
 
 class UserModel {
   static async create(user: User): Promise<User> {
+    console.log(`create - START : ${JSON.stringify(user)}`)
     const connection = await oracledb.getConnection(dbConfig);
     const result = await connection.execute(
       `INSERT INTO users (username, password, email) VALUES (:username, :password, :email) RETURNING id INTO :id`,
@@ -14,12 +15,14 @@ class UserModel {
         id: { type: oracledb.NUMBER, dir: oracledb.BIND_OUT },
       },
     ) as any;
-    
+
+    console.log(`result : ${JSON.stringify(result)}`)
     if (result.outBinds && result.outBinds.id) {
       user.id = result.outBinds.id[0];
     }
     
     await connection.close();
+    console.log(`create - DONE : ${JSON.stringify(user)}`)
     return user;
   }
 
@@ -31,7 +34,12 @@ class UserModel {
     ) as any;
     
     await connection.close();
-    return result.rows && result.rows.length ? result.rows[0] : null;
+    return result.rows && result.rows.length ? result.rows.map((row: any) => ({
+      id: row[0],
+      username: row[1],
+      password: row[2],
+      email: row[3]
+    }))[0] : null;
   }
 
   static async delete(userId: number): Promise<void> {
