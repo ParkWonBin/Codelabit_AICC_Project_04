@@ -4,7 +4,7 @@ userCreate.js에서 가입 시 비밀번호를 두 번 입력하도록하여 비
 
 다음으로는 session 기능을 활용한 userLogin.js에 대한 설명입니다.
 
-userLogin.ejs 화면에서 username과 password를 req.body로 입력받아 왔습니다. sql문을 통해 DB(user table)에 존재하는 데이터가 입력받은  username, password와 일치한다면 그 행의 값을 result에 넣어달라 했고, 그 결과가 null값이 아니라면 입력받은  username을 req.session.username에 저장하라고 했습니다. 이렇게 함으로써 페이지 이동 시 로그인 정보를 저장토록 구현하였습니다.
+userLogin.ejs 화면에서 username과 password를 req.body로 입력받아 왔습니다. sql문을 통해 DB(users table)에 존재하는 데이터가 입력받은  username, password와 일치한다면 그 행의 값을 result에 넣어달라 했고, 그 결과가 null값이 아니라면 입력받은  username을 req.session.username에 저장하라고 했습니다. 이렇게 함으로써 페이지 이동 시 로그인 정보를 저장토록 구현하였습니다.
 
 다음음  postMain.ejs 페이지입니다.
 
