@@ -11,7 +11,7 @@ router.post('/', async(req, res) => {
     const {username, password, confirmPassword} = req.body;
 
     if(password !== confirmPassword){
-        return res.status(400).sen('비밀번호가 일치하지 않습니다.');
+        return res.status(400).send('비밀번호가 일치하지 않습니다.');
     }
 
     const conn  = await oracledb.getConnection(dbConfig);
