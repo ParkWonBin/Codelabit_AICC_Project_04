@@ -15,7 +15,7 @@ router.post('/:postid', async(req, res) => {
 
     await conn.commit();
 
-    res.redirect('postMain');
+    res.redirect('../postMain');
 });
 
 module.exports = router;

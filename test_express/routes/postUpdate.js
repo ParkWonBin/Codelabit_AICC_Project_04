@@ -5,7 +5,7 @@ const oracledb = require('oracledb');
 const dbConfig = require('../dbconfig');
 
 router.post('/edit', (req, res) => {
-    const {postid, title, content} = req.bdoy;
+    const {postid, title, content} = req.body;
 
     const bind = {
         postid: postid,
