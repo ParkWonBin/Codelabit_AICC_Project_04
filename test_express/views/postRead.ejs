@@ -50,7 +50,7 @@
                     <td style="text-align: center"><%= post.author %></td>
                     <td id="dedate">
                         <% if(username === post.author){ %>
-                            <form action="/postUpdate/edit" method="psot">
+                            <form action="/postUpdate/edit" method="post">
                                 <input type="hidden" name="postid" value="<%= post.postid %>"/>
                                 <input type="hidden" name="title" value="<%= post.title %>"/>
                                 <input type="hidden" name="content" value="<%= post.content %>"/>
