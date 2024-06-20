@@ -6,6 +6,7 @@ from dotenv import load_dotenv
 from openai import AssistantEventHandler, OpenAI
 from typing_extensions import override
 
+# 메세지 기록을 다운로드 받아 새롭게 생성된 파일을 로컬 프로젝트에 저장작업 부분 (작업 미완성)
 
 load_dotenv()
 # Flask 애플리케이션 초기화
@@ -14,8 +15,8 @@ CORS(app)
 
 
 # 세션 설정
-app.config['SECRET_KEY'] = 'codelab1234'  # 보안을 위한 시크릿 키 설정, 실제 시크릿 키는 추측이 불가능하게 보안강도를 높여서 생성한다.
-app.config['SESSION_TYPE'] = 'filesystem'  # 세션 데이터를 파일 시스템에 저장
+app.config['SECRET_KEY'] = os.getenv("SECRET_KEY") # 보안을 위한 시크릿 키 설정, 실제 시크릿 키는 추측이 불가능하게 보안강도를 높여서 생성한다.
+app.config['SESSION_TYPE'] = os.getenv("SESSION_TYPE")  # 세션 데이터를 파일 시스템에 저장
 Session(app)
 
 

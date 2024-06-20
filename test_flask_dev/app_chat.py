@@ -5,6 +5,7 @@ from flask_cors import CORS  # 추가
 from dotenv import load_dotenv
 import os
 
+# 메세지 flask 컨트롤러 서버부분/ CRUD 데이터 처리 및 저장 부분입니다. [데이터입력, 검색 테스트만 가능]
 
 app = Flask(__name__)
 CORS(app)
