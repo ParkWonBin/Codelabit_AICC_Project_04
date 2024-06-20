@@ -10,8 +10,9 @@ app = Flask(__name__)
 CORS(app)
 load_dotenv()
 # 세션 설정
-app.config['SECRET_KEY'] = 'codelab1234'  # 보안을 위한 시크릿 키 설정
-app.config['SESSION_TYPE'] = 'filesystem'  # 세션 데이터를 파일 시스템에 저장
+app.config['SECRET_KEY'] = os.getenv("SECRET_KEY")
+app.config['SESSION_TYPE'] = os.getenv("SESSION_TYPE")
+
 Session(app)
 
 # OpenAI API key 설정
