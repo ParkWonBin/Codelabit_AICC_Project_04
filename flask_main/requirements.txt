@@ -1,0 +1,5 @@
+Flask
+cx_Oracle
+python-dotenv
+requests
+openai
