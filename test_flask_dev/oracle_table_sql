@@ -1,0 +1,67 @@
+select * from security_info_new;
+
+select * from security_info_old;
+
+GRANT CREATE SESSION TO CHAT_TABLE;
+
+-- 메세지 정보 테이블 생성 (보완적용 안됨)
+CREATE TABLE security_info_old (
+    thread_id VARCHAR2(50),
+    assistant_id VARCHAR2(50)
+);
+
+GRANT INSERT, UPDATE, SELECT, DELETE ON [테이블이름] TO [사용자];
+
+--GRANT CREATE TABLE TO [사용자];
+
+GRANT EXECUTE ON SYS.DBMS_CRYPTO TO chat_table;
+
+--  메세지 정보 보안 테이블 생성
+CREATE TABLE security_info_new (
+    thread_id RAW(2000),
+    assistant_id RAW(2000)
+);
+
+-- DBMS_CRYPTO 패키지 활성화
+SET SERVEROUTPUT ON;
+DECLARE
+  l_key       RAW(128) := UTL_RAW.cast_to_raw('YourSecretKey'); -- 암호화 키
+  l_iv        RAW(128) := UTL_RAW.cast_to_raw('InitializationVector'); -- 초기화 벡터
+  l_data      VARCHAR2(50) := '쓰레드 아이디 입력'; -- 암호화할 데이터
+  l_encrypted RAW(2000); -- 암호화된 데이터를 저장할 변수
+BEGIN
+  -- 데이터 암호화
+  l_encrypted := DBMS_CRYPTO.encrypt(
+                   src => UTL_RAW.cast_to_raw(l_data),
+                   typ => DBMS_CRYPTO.des_cbc_pkcs5,
+                   key => l_key,
+                   iv  => l_iv
+                 );
+  -- 암호화된 데이터 출력
+  DBMS_OUTPUT.put_line('Encrypted Data: ' || UTL_RAW.cast_to_varchar2(l_encrypted));
+
+  -- 암호화된 데이터를 저장하는 SQL 문
+  INSERT INTO security_info_new (thread_id, assistant_id)
+  VALUES (l_encrypted, UTL_RAW.cast_to_raw('어시스턴트 아이디 입력'));
+  
+  -- 암호화된 데이터를 저장하는 SQL 문
+  INSERT INTO security_info_old (thread_id, assistant_id)
+  VALUES (l_encrypted, UTL_RAW.cast_to_raw('어시스턴트 아이디 입력'));
+END;
+/
+
+-- 메세지 정보 테이블의 입력 데이터 조회 
+select * from security_info_old where thread_id = 'thread_id1234567_test';
+
+-- 입력문 
+INSERT INTO security_info_old (thread_id, assistant_id) 
+VALUES ('thread_id1234567_test', '어시스턴트 아이디 입력');
+--thread_id = '쓰레드 아이디입력'
+
+-- 메세지 내용 컬럼 추가 구문
+alter table security_info_old add message_content varchar2(4000);
+UPDATE security_info_old
+SET message_content = '예방봇에 관련한 채팅 메세지 내용 입니다.'
+
+WHERE thread_id = 'thread_id1234567_test' AND assistant_id = '어시스턴트 아이디 입력';
+commit;
