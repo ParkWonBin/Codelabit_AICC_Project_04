@@ -1,6 +1,8 @@
 import React from 'react';
 import { UserInfo } from '../../types';
 
+import './myData.css';
+
 interface MyPageFormProps {
   userInfo: UserInfo;
   setUserInfo: React.Dispatch<React.SetStateAction<UserInfo>>;
@@ -26,13 +28,17 @@ const MyData: React.FC<MyPageFormProps> = ({ userInfo, setUserInfo }) => {
     }
   };
 
-  return (
-    <div>
+  const renderMyPage = () => (
+    <div id="myPage">
       <h1>마이 페이지</h1>
       <p>환영합니다, {userInfo.username}</p>
       <p>이메일: {userInfo.email}</p>
       <button onClick={handleLogout}>로그아웃</button>
     </div>
+  );
+  
+  return (
+    <>{renderMyPage()}</>
   );
 };
 

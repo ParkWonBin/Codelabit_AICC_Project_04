@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { UserInfo } from '../../types';
 import { login, register } from '../../hooks/useAuth';
 
+import './loginForm.css';
+
 interface LoginProps {
   setUserInfo: React.Dispatch<React.SetStateAction<UserInfo>>;
 }
@@ -47,7 +49,8 @@ const LoginForm: React.FC<LoginProps> = ({ setUserInfo }) => {
   };
 
   const renderLoginForm = () => (
-    <div>
+    <div id="loginForm">
+      <h1>로그인</h1>
       <form onSubmit={handleLogin}>
         <div>
           <label>
@@ -66,9 +69,12 @@ const LoginForm: React.FC<LoginProps> = ({ setUserInfo }) => {
       <button type="button" onClick={() => setIsRegistering(true)}>회원가입</button>
     </div>
   );
+  
+  
 
   const renderRegisterForm = () => (
-    <div>
+    <div id="registerForm">
+      <h1>회원가입</h1>
       <form onSubmit={handleRegister}>
         <div>
           <label>
@@ -93,11 +99,12 @@ const LoginForm: React.FC<LoginProps> = ({ setUserInfo }) => {
       <button type="button" onClick={() => setIsRegistering(false)}>취소</button>
     </div>
   );
+  
 
   return (
-    <div>
+    <>
       {isRegistering ? renderRegisterForm() : renderLoginForm()}
-    </div>
+    </>
   );
 };
 
