@@ -12,6 +12,8 @@ function App() {
     const [userMessage, setUserMessage] =  useState('');
     const [sendAssistantData, setSendAssistantData] =  useState(null);
     const [selectedThreadMessages, setSelectedThreadMessages] = useState([ ]);
+    const [fraudAnalysisResult, setFraudAnalysisResult] = useState(''); // 사기 수법 분석 결과 저장
+    const [showFraudResult, setShowFraudResult] = useState(false); // 결과를 보여줄지 여부
 
 
     useEffect(() => {
@@ -255,7 +257,8 @@ function App() {
                     alert('Error: ' + response2.data.message);
                 }
                 if (response3.data.status === 'success') {
-                    setChatHistory(prev => `${prev}\n쳇봇: ${response3.data.answer}`);
+                    setFraudAnalysisResult(response3.data.analysis);
+                    setChatHistory(prev => `${prev}\n쳇봇: 결과로 심각성 수준을 나타냅니다.`);
                 } else {
                     alert('Error: ' + response3.data.message);
                 }
@@ -266,7 +269,6 @@ function App() {
                 setQuestion('');
             }
         }
-
 
 
         // event.preventDefault();
@@ -314,6 +316,10 @@ function App() {
             alert('Error: ' + error.message);
         }
     };
+
+    // const toggleFraudResult = () => {
+    //     setShowFraudResult(!showFraudResult);
+    // };
 
     return (
 
@@ -364,7 +370,7 @@ function App() {
 
             <h1>부동산 전세사기 예방봇을 제공하는 상담 창구</h1>
             <textarea
-                value={isFetching ? `응답중${dots}` : chatHistory}
+                value={isFetching ? `응답중${dots}` : `${chatHistory}\n사기 수법 분석 결과:\n${fraudAnalysisResult}`}
                 rows="10"
                 cols="50"
                 readOnly
@@ -378,19 +384,21 @@ function App() {
                     cols="50"
                 />
                 <br/>
-                <button type="submit">보내기</button>
+                {/* <button type="submit">보내기</button>*/}
+                <button type="submit" disabled={isFetching}>
+                    {isFetching ? `Fetching ${dots}` : '보내기'}
+                </button>
             </form>
-          {/*  <textarea
-                value={question}
-                onChange={(event) => setQuestion(event.target.value)}
-                onKeyDown={handleInputChange}
-                placeholder="상담 내용을 여기에 입력하세요."
-                rows="4"
+            {/*<button onClick={toggleFraudResult}>
+                {showFraudResult ? '숨기기' : '사기 수법 분석 결과 보기'}
+            </button>
+            <textarea
+                value={isFetching ? `응답중${dots}` : `${chatHistory}${showFraudResult ? `\n사기 수법 분석 결과:\n${fraudAnalysisResult}` : ''}`}
+                rows="10"
                 cols="50"
-                disabled={isFetching}
-            />
-            <br/>
-            <pre>{chatHistory}</pre>*/}
+                readOnly
+            />*/}
+            
             <div>
                 <h2>Thread [채팅창] 리스트</h2>
 
@@ -400,17 +408,17 @@ function App() {
                 <ul>
                     {threads.map(thread => (
                         <li key={thread.id}>
-                    <li>
-                            <button onClick={() => handleThreadClick(thread.thread_id)}>
-                                쓰레드 아이디:{thread.thread_id}
-                            </button>
+                            <li>
+                                <button onClick={() => handleThreadClick(thread.thread_id)}>
+                                    쓰레드 아이디:{thread.thread_id}
+                                </button>
+                            </li>
                         </li>
-                    </li>
                     ))}
                 </ul>
             </div>
             <div>
-                <h2>Selected Thread 메시지 Message_ID로 조회 </h2>
+                <h2>Selected Thread ID로  Message 내용 조회 </h2>
                 <ul>
                     {selectedThreadMessages.map(message => (
                         <li key={message.id}>
@@ -419,6 +427,8 @@ function App() {
                             {message.thread_id} </li>
                     ))}
                 </ul>
+                {/*<h2>사기 수법 분석 결과:</h2>*/}
+                {/*<p>{fraudAnalysisResult}</p> /!* 사기 수법 분석 결과 출력 *!/*/}
             </div>
         </div>
     );
