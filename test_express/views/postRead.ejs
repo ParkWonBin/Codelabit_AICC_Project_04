@@ -35,18 +35,18 @@
         <thead>
             <tr>
                 <th style="width: 50px">글번호</th>
-                <th style="width: 150px">글제목</th>
-                <th style="width: auto">글내용</th>
+                <th style="width: auto">글제목</th>
+<!--                <th style="width: auto">글내용</th>-->
                 <th style="width: 50px">글쓴이</th>
-                <th style="width: 60px"></th>
+                <th style="width: 60px">수정<br>삭제</th>
             </tr>
         </thead>
         <tbody>
             <% posts.data.forEach(post => { %>
                 <tr>
                     <td style="text-align: center"><%= post.postid %></td>
-                    <td><%= post.title %></td>
-                    <td><%= post.content %></td>
+                    <td><a href="/postDetail/<%= post.postid %>"><%= post.title %></a></td>
+
                     <td style="text-align: center"><%= post.author %></td>
                     <td id="dedate">
                         <% if(username === post.author){ %>

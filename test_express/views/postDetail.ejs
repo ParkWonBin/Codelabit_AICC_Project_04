@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        body {
+            background-image: url("../img/coffee.jpg");
+            background-size: cover;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            border: 1px solid black;
+            padding: 8px;
+            text-align: left;
+            color: floralwhite;
+        }
+        th {
+            color: white;
+            text-align: center;
+            background-color: black;
+            width: 100px;
+        }
+        td {
+            width: auto;
+        }
+        button {
+            width: 100px;
+            height: 30px;
+        }
+    </style>
+</head>
+<body>
+<table>
+    <tr>
+        <th>제목</th>
+        <td class="title"><%= postdetail.title %></td>
+    </tr>
+    <tr>
+        <th>작성자</th>
+        <td class="author"><%= postdetail.author %></td>
+    </tr>
+    <tr>
+        <th>내용</th>
+        <td class="content"><%= postdetail.content %></td>
+    </tr>
+<!--    <form action="/postRead" method="get" style="">-->
+<!--        <button type="submit">게시판</button>-->
+<!--    </form>-->
+</table>
+</body>
+</html>
