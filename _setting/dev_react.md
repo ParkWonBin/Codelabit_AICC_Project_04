@@ -77,6 +77,12 @@ const App: React.FC = () => {
 export default App;
 ```
 
+기타 필요한 라이브러리 설치
+```powershell
+npm install axios
+npm install @types/axios
+```
+
 ### 5. Webpack 설정을 오버라이드하여 폴리필 추가
 Webpack 5에서 Node.js 코어 모듈에 대한 폴리필을 추가하려면 `react-app-rewired`와 필요한 패키지를 설치하고 설정 파일을 추가합니다.
 
@@ -127,3 +133,10 @@ module.exports = function override(config) {
 ```powershell
 npm start
 ```
+
+
+---
+# 자료 조사하면서 알게된 것
+1. ts와 tsx 차이 : 
+- ts : JS의 TypeScript 버전
+- tsx : JSX의 TypeScript 버전
