@@ -2,10 +2,12 @@
 import axios from 'axios';
 import { UserInfo } from '../types';
 
-const EXPRESS_URL = process.env.REACT_APP_EXPRESS_URL || 'http://localhost:4001';
+const EXPRESS_URL = process.env.REACT_APP_EXPRESS_URL || 'http://localhost:4000';
 
 export const login = async (username: string, password: string): Promise<UserInfo> => {
-  const response = await axios.post(`${EXPRESS_URL}/api/users/login`, { username, password });
+  const endpoint = `${EXPRESS_URL}/api/users/login`
+  console.log(endpoint)
+  const response = await axios.post(endpoint, { username, password });
   const userInfo = {
       id:response.data.loginInfo.id,
       username:response.data.loginInfo.username,
@@ -17,5 +19,7 @@ export const login = async (username: string, password: string): Promise<UserInf
 };
 
 export const register = async (username: string, email: string, password: string): Promise<void> => {
-  await axios.post(`${EXPRESS_URL}/api/users/register`, { username, email, password });
+  const endpoint = `${EXPRESS_URL}/api/users/register`
+  console.log(endpoint)
+  await axios.post(endpoint, { username, email, password });
 };

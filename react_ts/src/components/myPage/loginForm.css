@@ -1,0 +1,60 @@
+#loginForm,
+#registerForm {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-width: 300px;
+    width: 50%;
+    background: white;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+
+    /* position: absolute; */
+    top: 5vh;
+
+}
+
+#loginForm form,
+#registerForm form{
+    width: 100%;
+}
+
+#loginForm div,
+#registerForm div {
+    margin-bottom: 15px;
+}
+
+#loginForm label,
+#registerForm label {
+    display: flex;
+    flex-direction: column;
+    font-size: 16px;
+    margin-bottom: 5px;
+}
+
+#loginForm input,
+#registerForm input {
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    font-size: 14px;
+}
+
+#loginForm button,
+#registerForm button {
+    width: 100%;
+    padding: 10px;
+    background-color: #007bff;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+#loginForm button:hover,
+#registerForm button:hover {
+    background-color: #0056b3;
+}

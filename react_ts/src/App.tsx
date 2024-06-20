@@ -1,13 +1,14 @@
 import React, { useState } from 'react';
 import { Menu, UserInfo } from './types';
 
+import './App.css';
 import Chat from './pages/chat';
 import MyPage from './pages/mypage';
 import Board from './pages/board';
 import Navigation from './components/navigation';
 
 const App: React.FC = () => {
-  const [selectedMenu, setSelectedMenu] = useState<Menu>('chat');
+  const [selectedMenu, setSelectedMenu] = useState<Menu>('mypage');
   const [userInfo, setUserInfo] = useState<UserInfo>({
     id:-1,
     username:"",
@@ -30,11 +31,12 @@ const App: React.FC = () => {
   };
 
   return (
-    <div>
-      <Navigation selectedMenu={selectedMenu} setSelectedMenu={setSelectedMenu} userInfo={userInfo} />
-      <div>
-        {renderPage()}
-      </div>
+    <div id="App">
+      {userInfo.isLoggedIn
+        ?<Navigation selectedMenu={selectedMenu} setSelectedMenu={setSelectedMenu} userInfo={userInfo} />
+        :<></>
+      }
+      {renderPage()}
     </div>
   );
 };
