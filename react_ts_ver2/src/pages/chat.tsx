@@ -1,3 +1,4 @@
+// Chat.tsx
 import React, { useState } from 'react';
 import { UserInfo } from '../types';
 import './Chat.css';

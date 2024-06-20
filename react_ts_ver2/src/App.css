@@ -1,3 +1,46 @@
+/* App.css */
+#App {
+  text-align: center;
+  background-color: #FEE500;
+  position: relative;
+  max-width: 800px;
+  margin: auto;
+  height: 95vh;
+  padding: 5vh 30px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.chat-room-list {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.chat-room-list ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.chat-room-list li {
+  margin: 10px 0;
+}
+
+.chat-room-list a {
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: white;
+  text-decoration: none;
+  border-radius: 5px;
+}
+
+.chat-room-list a:hover {
+  background-color: #0056b3;
+}
+
 /* Chat.css */
 .chat-container {
   text-align: center;
