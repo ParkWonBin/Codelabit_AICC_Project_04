@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>Data Receiver</title>
+</head>
+<body>
+
+<!--<input type="button" onclick="getAndDisplayData()" value="여기에 데이터 출력" >-->
+<div id="dataContainer">여기에 div 컨데이너1 정보가 들어옵니다. </div>
+<!--<div id="dataContainer1">여기에 div 컨데이너2 = {{ dict1 }}</div>-->
+<h1>부동산 거래 허가 정보</h1>
+<input type="button" onclick="getAndDisplayData()" value="여기에 데이터 출력">
+<table id="dataTable" border="1">
+    <thead>
+    <tr>
+        <th>번호</th>
+        <th>건물면적</th>
+        <th>용도지역</th>
+        <th>위도</th>
+        <th>경도</th>
+        <th>주소</th>
+        <th>주소지역</th>
+    </tr>
+    </thead>
+    <tbody>
+    <!-- 데이터 행은 여기에 동적으로 추가됩니다 -->
+
+    </tbody>
+</table>
+
+<script type="text/javascript">
+// 비동기 프로그래밍 키워드 : (async, await)
+// 서버에 요청하는 함수(모듈) : Fetch(JS) , AJAX(jquery) , Axios(React) | 전처리 편하게 해주는 정도의 차이. 기타 세부기능의 차이
+// => 본질 : 다른 서버에 뭔가를 요청하고. 응답을 받아오는 함수. (서버가 계산해서 던져주면 받음.)
+// 키워드 : 콜백함수, promise 객체, then 함수
+
+// function 더하기(x,y){
+//     return x+y
+// }
+//
+// function abc(a,b,c){
+//    return c(a,b);
+// }
+//
+// const test = abc(1,2,더하기)
+//
+
+async function getAndDisplayData() {
+    try {
+        // 쿼리 스트링의 'data' 값을 JSON 객체로 파싱합니다.
+        const response = await fetch('http://localhost:4000/getData');
+        const data = await response.json();
+
+        
+        // 기존 행을 삭제
+        const tableBody = document
+            .getElementById('dataTable')
+            .getElementsByTagName('tbody')[0];
+
+            // JSON 데이터를 테이블 행으로 변환
+        tableBody.innerHTML = '';
+        data.forEach(item => {
+            const row = tableBody.insertRow();
+            row.insertCell(0).textContent = item.번호;
+            row.insertCell(1).textContent = item.건물면적;
+            row.insertCell(2).textContent = item.용도지역;
+            row.insertCell(3).textContent = item.위도;
+            row.insertCell(4).textContent = item.경도;
+            row.insertCell(5).textContent = item.주소;
+            row.insertCell(6).textContent = item.주소지역;
+        });
+
+        const dataContainer = document.getElementById('dataContainer')
+        dataContainer.innerText = dataContainer.innerText + " " + JSON.stringify(data)
+        
+
+    } catch (error) {
+        console.error("Error parsing JSON from URL:", error);
+    }
+}
+
+ 
+
+</script>
+
+</body>
+</html>
+

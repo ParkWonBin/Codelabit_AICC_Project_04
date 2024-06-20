@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>Data Receiver</title>
+
+</head>
+<body>
+    <h1>Data Receiver Page</h1>
+    <div id="dataContainer">여기에 div 컨데이너</div>
+
+    <script type="text/javascript">
+
+        function getAndDisplayData() {
+            // URL에서 쿼리 파라미터 'data' 추출
+            const queryString = new URLSearchParams(window.location.search);
+            const dataString = queryString.get('data');
+
+            // 추출한 데이터를 디코드하고 JSON으로 파싱
+            const data = JSON.parse(decodeURIComponent(dataString));
+            console.log(data);
+            // 화면에 데이터 표시
+            const container = document.getElementById('dataContainer');
+            data.forEach(item => {
+                const content =   `number: ${item.번호},
+                    area: ${item.건물면적},
+                    usage: ${item.용도지역},
+                    latitude: ${item.위도},
+                    longitude: ${item.경도},
+                    address: ${item.주소},
+                    region: ${item.주소지역}`;
+                    // `Name: ${item.name}, Value: ${item.value}`;
+                const element = document.createElement('p');
+                element.textContent = content;
+                container.appendChild(element);
+            });
+        }
+
+        // 페이지 로딩 완료 시 데이터 표시 함수 실행
+        window.onload = getAndDisplayData;
+
+    </script>
+
+</body>
+</html>
+
