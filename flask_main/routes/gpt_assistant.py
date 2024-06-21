@@ -6,12 +6,10 @@ client = openai.OpenAI()
 
 gpt_assistant_bp = Blueprint('gpt_assistant', __name__)
 #전체 # curl -X GET http://localhost:5001/api/assistant/
-#생성 # curl -X POST http://localhost:5001/api/assistant/
-#조회 # curl -X GET
-#수정 # curl -X GET
-#삭제 # curl -X GET
-
-# asst_LzYnKK8vcsK7SOYkQ9LRbzDr
+#생성 # curl -X POST http://localhost:5001/api/assistant/ -H "Content-Type: application/json" -d "{\"name\": \"testbot\",\"instructions\":\"test\",\"tools\":[],\"model\":\"gpt-3.5-turbo\"}"
+#조회 # curl -X GET http://localhost:5001/api/assistant/asst_WIAwPMLirIrQuSDtpbbYO08W
+#수정 # curl -X POST http://localhost:5001/api/assistant/asst_WIAwPMLirIrQuSDtpbbYO08W -H "Content-Type: application/json" -d "{\"name\": \"testbot123\",\"instructions\":\"test123\",\"tools\":[],\"model\":\"gpt-3.5-turbo\"}"
+#삭제 # curl -X POST http://localhost:5001/api/assistant/delete/asst_WIAwPMLirIrQuSDtpbbYO08W
 
 @gpt_assistant_bp.route('/', methods=['GET'])
 def get_assistants():
@@ -28,12 +26,9 @@ def get_assistants():
 
 @gpt_assistant_bp.route('/', methods=['POST'])
 def create_assistant():
-    # curl -X POST http://localhost:5001/api/assistant/
     data = request.get_json()
-    print(data)
-    
-    name = data.get('name')
-    instructions = data.get('instructions')
+    name = data.get('name', 'testbot')
+    instructions = data.get('instructions','test hi')
     tools = data.get('tools', [])
     model = data.get('model', "gpt-3.5-turbo")
 
@@ -57,22 +52,21 @@ def get_assistant(assistant_id):
     except Exception as e:
         return jsonify({'error': str(e)}), 400
 
-@gpt_assistant_bp.route('/<assistant_id>', methods=['PUT'])
+@gpt_assistant_bp.route('/<assistant_id>', methods=['POST'])
 def update_assistant(assistant_id):
     data = request.get_json()
     updates = {key: data[key] for key in data if key in ['name', 'instructions', 'tools', 'model']}
 
     try:
         assistant = client.beta.assistants.update(assistant_id, **updates)
-        assistants_data = assistant.to_dict() 
-        return jsonify(assistants_data)
+        return jsonify(assistant.to_dict())
     except Exception as e:
         return jsonify({'error': str(e)}), 400
 
-@gpt_assistant_bp.route('/<assistant_id>', methods=['DELETE'])
+@gpt_assistant_bp.route('delete/<assistant_id>', methods=['POST'])
 def delete_assistant(assistant_id):
     try:
         client.beta.assistants.delete(assistant_id)
-        return '', 204
+        return jsonify({'message': 'assistant deleted successfully',}), 204
     except Exception as e:
         return jsonify({'error': str(e)}), 400
