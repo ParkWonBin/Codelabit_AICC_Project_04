@@ -20,7 +20,7 @@ const Chat: React.FC<ChatProps> = ({ userInfo }) => {
   const [input, setInput] = useState('');
 
   const handleSend = () => {
-    if (input.trim()) {
+    if (input.trim()) {    
       const userMessage = { text: input, isUser: true };
       setMessages([...messages, userMessage]);
       setInput('');
