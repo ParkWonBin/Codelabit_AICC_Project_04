@@ -7,14 +7,9 @@
   margin-right: auto;
   margin-left: auto;
   
-  height: 95vh;
-  padding-top: 5vh;
-  padding-right: 30px;
-  padding-left: 30px;
-
+  height: 100vh;
   display: flex;
   flex-direction: column;
   justify-content: center; /* 세로 방향으로 가운데 정렬 */
   align-items: center; /* 가로 방향으로 가운데 정렬 */
-  height: 95vh; /* 화면 전체 높이 */
 }

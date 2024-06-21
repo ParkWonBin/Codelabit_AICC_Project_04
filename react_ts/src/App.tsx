@@ -14,7 +14,7 @@ const App: React.FC = () => {
     username:"",
     email:"",
     token:"",
-    isLoggedIn:false
+    isLoggedIn:true
   });
 
   const renderPage = () => {
