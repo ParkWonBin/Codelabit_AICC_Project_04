@@ -1,17 +1,42 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { Menu, UserInfo } from './types';
+
 import './App.css';
+import Chat from './pages/chat';
+import MyPage from './pages/mypage';
+import Board from './pages/board';
+import Navigation from './components/navigation';
 
 const App: React.FC = () => {
-  const apiUrl: string = process.env.REACT_APP_API_URL as string;
-  const apiKey: string = process.env.REACT_APP_API_KEY as string;
-  
+  const [selectedMenu, setSelectedMenu] = useState<Menu>('mypage');
+  const [userInfo, setUserInfo] = useState<UserInfo>({
+    id:-1,
+    username:"",
+    email:"",
+    token:"",
+    isLoggedIn:false
+  });
+
+  const renderPage = () => {
+    switch (selectedMenu) {
+      case 'chat':
+        return <Chat userInfo={userInfo} />;
+      case 'mypage':
+        return <MyPage userInfo={userInfo} setUserInfo={setUserInfo} />;
+      case 'board':
+        return <Board userInfo={userInfo} />;
+      default:
+        return <Chat userInfo={userInfo} />;
+    }
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <h1>Environment Variables in React</h1>
-        <p>API URL: {apiUrl}</p>
-        <p>API Key: {apiKey}</p>
-      </header>
+    <div id="App">
+      {userInfo.isLoggedIn
+        ?<Navigation selectedMenu={selectedMenu} setSelectedMenu={setSelectedMenu} userInfo={userInfo} />
+        :<></>
+      }
+      {renderPage()}
     </div>
   );
 };
