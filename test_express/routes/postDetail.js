@@ -14,7 +14,6 @@ router.get('/:postid', async(req, res) => {
     const detail = await conn.execute(sql, bind);
 
     const postdetail = {
-        postid: postid,
         title: detail.rows[0][0],
         author: detail.rows[0][1],
         content: detail.rows[0][2]
