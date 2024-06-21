@@ -44,7 +44,7 @@ def create_assistant():
     except Exception as e:
         return jsonify({'error': str(e)}), 400
 
-@gpt_assistant_bp.route('/<assistant_id>', methods=['GET'])
+@gpt_assistant_bp.route('/<string:assistant_id>', methods=['GET'])
 def get_assistant(assistant_id):
     try:
         assistant = client.beta.assistants.retrieve(assistant_id)
@@ -52,7 +52,7 @@ def get_assistant(assistant_id):
     except Exception as e:
         return jsonify({'error': str(e)}), 400
 
-@gpt_assistant_bp.route('/<assistant_id>', methods=['POST'])
+@gpt_assistant_bp.route('/<string:assistant_id>', methods=['POST'])
 def update_assistant(assistant_id):
     data = request.get_json()
     updates = {key: data[key] for key in data if key in ['name', 'instructions', 'tools', 'model']}
@@ -63,7 +63,7 @@ def update_assistant(assistant_id):
     except Exception as e:
         return jsonify({'error': str(e)}), 400
 
-@gpt_assistant_bp.route('delete/<assistant_id>', methods=['POST'])
+@gpt_assistant_bp.route('delete/<string:assistant_id>', methods=['POST'])
 def delete_assistant(assistant_id):
     try:
         client.beta.assistants.delete(assistant_id)

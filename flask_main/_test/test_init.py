@@ -1,9 +1,15 @@
 import os
+from openai import OpenAI
 from dotenv import load_dotenv
 
-# 환경변수 불러오기
-def init_env():
-    load_dotenv()
+load_dotenv()
 
-    OPENAI_API_KEY = os.getenv('OPENAI_API_KEY')
-    print(f"OPENAI_API_KEY : {OPENAI_API_KEY}")
+client = OpenAI(
+  api_key=os.getenv('OPENAI_API_KEY')
+)
+
+my_assistants = client.beta.assistants.list(
+    order="desc",
+    limit="20",
+)
+print(my_assistants.data)

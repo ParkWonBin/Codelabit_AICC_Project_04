@@ -12,8 +12,6 @@ gpt_thread_bp = Blueprint('gpt_thread', __name__)
 
 @gpt_thread_bp.route('/', methods=['POST'])
 def create_thread():
-    # curl -X POST http://localhost:5001/api/thread/
-    # OK
     try:
         empty_thread = client.beta.threads.create()
         print(empty_thread)
@@ -40,12 +38,6 @@ def create_thread():
         return jsonify(resultData), 201
     except Exception as e:
         return jsonify({'error': str(e)}), 400
-
-@gpt_thread_bp.route('/<string:thread_id>', methods=['GET'])
-def get_messages(thread_id):
-    messages = client.beta.threads.messages.list(thread_id)
-    return jsonify(messages.to_dict())
-
 
 @gpt_thread_bp.route('/delete/<string:thread_id>', methods=['POST'])
 def delete_thread(thread_id):
@@ -75,3 +67,8 @@ def delete_thread(thread_id):
         return jsonify(threads_data), 201
     except Exception as e:
         return jsonify({'error': str(e)}), 400
+
+@gpt_thread_bp.route('/<string:thread_id>', methods=['GET'])
+def get_messages(thread_id):
+    messages = client.beta.threads.messages.list(thread_id)
+    return jsonify(messages.to_dict())
