@@ -1,5 +1,5 @@
 module.exports = {
     user: 'caffe',
     password: '0904',
-    connectString: 'localhost:1521/xe'
+    connectString: '192.168.0.6:1521/xe'
 };

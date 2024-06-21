@@ -31,4 +31,4 @@ app.use('/userLogin', require('./routes/userLogin'));
 app.use('/myPage', require('./routes/myPage'));
 app.use('/postDetail', require('./routes/postDetail'));
 
-app.listen(port, () => console.log(`Server is running on http://localhost:${port}`));
+app.listen(port, () => console.log(`Server is running on http://192.168.0.6:${port}`));
