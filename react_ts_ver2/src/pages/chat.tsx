@@ -1,4 +1,3 @@
-// Chat.tsx
 import React, { useState } from 'react';
 import { UserInfo } from '../types';
 import './Chat.css';
@@ -7,46 +6,37 @@ interface ChatProps {
   userInfo: UserInfo;
 }
 
+interface Message {
+  text: string;
+  isUser: boolean;
+}
+
 const Chat: React.FC<ChatProps> = ({ userInfo }) => {
-  const [messages, setMessages] = useState<{ sender: string; text: string }[]>([]);
+  const [messages, setMessages] = useState<Message[]>([
+    { text: '안녕하세요!', isUser: false },
+    { text: '안녕하세요!', isUser: true },
+    { text: '오늘 뭐하세요~~!!!??', isUser: false },
+  ]);
   const [input, setInput] = useState('');
 
   const handleSend = () => {
     if (input.trim()) {
-      setMessages([...messages, { sender: 'user', text: input }]);
-      const userMessage = input;
+      const userMessage = { text: input, isUser: true };
+      setMessages([...messages, userMessage]);
       setInput('');
-
-      // 간단한 챗봇 응답 추가
-      setTimeout(() => {
-        const botResponse = getBotResponse(userMessage);
-        setMessages(prevMessages => [
-          ...prevMessages,
-          { sender: 'bot', text: botResponse }
-        ]);
-      }, 500);
-    }
-  };
-
-  const getBotResponse = (message: string): string => {
-    // 챗봇 로직 작성 (여기서는 단순 에코 챗봇)
-    if (message.toLowerCase().includes('hello')) {
-      return 'Hello! How can I help you today?';
-    } else if (message.toLowerCase().includes('bye')) {
-      return 'Goodbye! Have a nice day!';
-    } else {
-      return `You said: ${message}`;
     }
   };
 
   return (
     <div className="chat-container">
-      <h1>Chat Page</h1>
-      <p>Welcome to the chat page, {userInfo.username}.</p>
+      <h1>CHATTING</h1>
       <div className="messages">
         {messages.map((message, index) => (
-          <div key={index} className={`message ${message.sender}`}>
-            <strong>{message.sender === 'user' ? userInfo.username : 'Bot'}:</strong> {message.text}
+          <div key={index} className={`message ${message.isUser ? 'user' : 'other'}`}>
+            <div className={`icon ${message.isUser ? 'user-icon' : 'other-icon'}`}>
+              {message.isUser ? '나' : '상대방'}
+            </div>
+            <span className="message-text">{message.text}</span>
           </div>
         ))}
       </div>
@@ -57,7 +47,7 @@ const Chat: React.FC<ChatProps> = ({ userInfo }) => {
           onChange={(e) => setInput(e.target.value)}
           onKeyDown={(e) => e.key === 'Enter' && handleSend()}
         />
-        <button onClick={handleSend}>Send</button>
+        <button onClick={handleSend}>전송</button>
       </div>
     </div>
   );
