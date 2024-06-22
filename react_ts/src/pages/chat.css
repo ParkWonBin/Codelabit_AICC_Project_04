@@ -22,10 +22,10 @@
   border-color: black;
 }
 
-.chat-window {
+.cht-waindow {
   flex: 1;
-  background-color: lightblue;
-  height: calc(100% - 70px); ;
-  display: flex;
   flex-direction: column;
+  
+  display: flex;
+  height: calc(100% - 70px); ;
 }

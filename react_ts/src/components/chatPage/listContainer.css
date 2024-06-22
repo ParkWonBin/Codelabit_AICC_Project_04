@@ -31,4 +31,15 @@
     border:1px solid #f3dc0d;
     border-radius: 5px;
     background-color: white;
+    padding-top: 3px;
+    padding-bottom: 5px;
+}
+
+.list-item:hover{
+    background-color: #66aefc;
+}
+
+.list-item.selected{
+    background-color: #007bff;
+    color: white;
 }
