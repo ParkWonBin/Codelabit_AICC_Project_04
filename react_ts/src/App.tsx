@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Menu, UserInfo } from './types';
-import { Chatcontext } from './types/chat';
+import { ChatProvider } from './contexts/chatContext';
 
 import './App.css';
 import Chat from './pages/chat';
@@ -10,7 +10,7 @@ import Navigation from './components/navigation';
 
 const App: React.FC = () => {
   const [selectedMenu, setSelectedMenu] = useState<Menu>('mypage');
-  const [chatContext, setChatContext] = useState<Chatcontext>({});
+
   const [userInfo, setUserInfo] = useState<UserInfo>({
     id:1,
     username:"a",
@@ -22,7 +22,7 @@ const App: React.FC = () => {
   const renderPage = () => {
     switch (selectedMenu) {
       case 'chat':
-        return <Chat userInfo={userInfo} context={chatContext} setContext={setChatContext}/>;
+        return <Chat userInfo={userInfo} />;
       case 'board':
         return <Board userInfo={userInfo} />;
       default:
@@ -37,7 +37,9 @@ const App: React.FC = () => {
         ?<Navigation selectedMenu={selectedMenu} setSelectedMenu={setSelectedMenu} userInfo={userInfo} />
         :<></>
       }
-      {renderPage()}
+      <ChatProvider>
+        {renderPage()}
+      </ChatProvider>
     </div>
   );
 };
