@@ -12,6 +12,8 @@ interface ChatContextType {
   setSelectedBot: React.Dispatch<React.SetStateAction<Bot | null>>;
   selectedRoom: Room | null;
   setSelectedRoom: React.Dispatch<React.SetStateAction<Room | null>>;
+  input:string;
+  setInput:React.Dispatch<React.SetStateAction<string>>;
 }
 
 const ChatContext = createContext<ChatContextType | undefined>(undefined);
@@ -22,9 +24,13 @@ export const ChatProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
   const [thread, setThread] = useState<{ [key: string]: Message[] }>({});
   const [selectedBot, setSelectedBot] = useState<Bot | null>(null);
   const [selectedRoom, setSelectedRoom] = useState<Room | null>(null);
+  const [input,setInput] = useState<string>("");
 
   return (
-    <ChatContext.Provider value={{ bots, setBots, rooms, setRooms, thread, setThread, selectedBot, setSelectedBot, selectedRoom, setSelectedRoom }}>
+    <ChatContext.Provider value={{ 
+      bots, setBots, rooms, setRooms, thread, setThread, input, setInput,
+      selectedBot, setSelectedBot, selectedRoom, setSelectedRoom 
+    }}>
       {children}
     </ChatContext.Provider>
   );

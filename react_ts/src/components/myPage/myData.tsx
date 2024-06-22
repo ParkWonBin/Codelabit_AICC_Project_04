@@ -1,5 +1,7 @@
 import React from 'react';
 import { UserInfo } from '../../types';
+import { handleAuthlogout } from '../../handlers/authHandlers';
+import { useChatContext } from '../../contexts/chatContext';
 
 import './myData.css';
 
@@ -9,23 +11,19 @@ interface MyPageFormProps {
 }
 
 const MyData: React.FC<MyPageFormProps> = ({ userInfo, setUserInfo }) => {
+  const {
+    setBots, setRooms, setThread, 
+    setSelectedBot, setSelectedRoom
+  } = useChatContext()
 
   const handleLogout = async (e: React.FormEvent) => {
     e.preventDefault();
-
-    try {
-      // 로그아웃 처리
-      setUserInfo({
-        id: -1,
-        username: "",
-        email: "",
-        token: "",
-        isLoggedIn: false
-      });
-      alert('로그아웃 되었습니다.');
-    } catch (error) {
-      console.error('로그아웃 실패', error);
-    }
+    setBots([])
+    setRooms([])
+    setThread({})
+    setSelectedBot(null)
+    setSelectedRoom(null)
+    setUserInfo(handleAuthlogout())
   };
 
   const renderMyPage = () => (

@@ -1,13 +1,15 @@
 import React from 'react';
+import { UserInfo } from '../../types';
 import { Chatcontext, Bot,Room } from '../../types/chat';
 import './chatContextInfo.css';
 
 interface ChatContextInfoProps {
+  userInfo:UserInfo;
   chatContext: Chatcontext;
   onBotUpdate: (bot: Bot) => void;
-  onRoomUpdate: (room: Room) => void;
   onBotDelete: (bot: Bot) => void;
-  onRoomDelete: (room: Room) => void;
+  onRoomUpdate: (room: Room, userInfo:UserInfo) => void;
+  onRoomDelete: (room: Room, userInfo:UserInfo) => void;
 }
 
 const handelBotNotSelected = ()=>{
@@ -19,13 +21,13 @@ const handelRoomNotSelected = ()=>{
 }
 
 
-const ChatContextInfo: React.FC<ChatContextInfoProps> = ({ chatContext, onBotDelete, onRoomDelete, onBotUpdate, onRoomUpdate }) => (
+const ChatContextInfo: React.FC<ChatContextInfoProps> = ({ chatContext, onBotDelete, onRoomDelete, onBotUpdate, onRoomUpdate, userInfo }) => (
   <div id="chatContextInfo">
     <div className="chat-header">
       <span>채팅방 : {chatContext.room ? chatContext.room.name : '선택 안됨'}</span>
         {chatContext.room && <>
-            <button onClick={() => chatContext.room ? onRoomUpdate(chatContext.room) : handelRoomNotSelected() }>수정</button>
-            <button onClick={() => chatContext.room ? onRoomDelete(chatContext.room) : handelRoomNotSelected() }>삭제</button>
+            <button onClick={() => chatContext.room ? onRoomUpdate(chatContext.room, userInfo) : handelRoomNotSelected() }>수정</button>
+            <button onClick={() => chatContext.room ? onRoomDelete(chatContext.room, userInfo) : handelRoomNotSelected() }>삭제</button>
         </>}
     </div>
     <div className="chat-header">
