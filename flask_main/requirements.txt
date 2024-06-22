@@ -1,4 +1,5 @@
-Flask
+flask
+flask_cors
 cx_Oracle
 python-dotenv
 requests

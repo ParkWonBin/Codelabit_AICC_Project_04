@@ -1,3 +1,20 @@
+
+# DB 계정 생성
+SQL PLUS / Run SQL Command Line 
+
+```sql
+conn / as sysdba
+startup
+
+CREATE USER your_new_user IDENTIFIED BY your_password;
+GRANT CONNECT, RESOURCE TO your_new_user;
+GRANT CREATE TABLE TO your_new_user;
+GRANT CREATE SESSION TO your_new_user;
+```
+
+# Table 생성
+
+```sql
 -- 시퀀스 생성
 CREATE SEQUENCE user_seq START WITH 1 INCREMENT BY 1;
 
@@ -17,3 +34,5 @@ FOR EACH ROW
 BEGIN
     SELECT user_seq.NEXTVAL INTO :new.id FROM dual;
 END;
+
+```
