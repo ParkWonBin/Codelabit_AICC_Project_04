@@ -11,7 +11,6 @@ import { useChatContext } from '../contexts/chatContext';
 import { useChatHandlersBot } from '../handlers/chatHandlersBot';
 import { useChatHandlersRoom } from '../handlers/chatHandlersRoom';
 import { useChatHandlersMessage } from '../handlers/chatHandlersMessage';
-import { fetchChatDataBotList, fetchChatDataRoomList, fetchThreadMessages } from '../hooks/useChatDataGetList';
 
 interface ChatProps {
   userInfo: UserInfo;
@@ -25,6 +24,7 @@ const Chat: React.FC<ChatProps> = ({ userInfo }) => {
   } = useChatContext();
     
   const {
+    handleGetBotList,
     handleBotClick,
     handleCreateBot,
     handleUpdateBot,
@@ -32,33 +32,35 @@ const Chat: React.FC<ChatProps> = ({ userInfo }) => {
   } = useChatHandlersBot();
   
   const {
-    handleRoomClick,
+    handleGetRoomList,
+    handleSelectRoom,
     handleCreateRoom,
     handleUpdateRoom,
     handleDeleteRoom
   } = useChatHandlersRoom();
   
   const {
-    handleSend,
-    handleReceive
+    hadnleGetRoomMessages,
+    handleSendMessage,
+    handleReceiveMessage
   } = useChatHandlersMessage();
 
   // 처음 들어왔을 때 목록 가져오기
   useEffect(()=>{
-    fetchChatDataBotList(bots, setBots)
-    fetchChatDataRoomList(rooms, setRooms)
+    handleGetRoomList()
+    handleGetBotList()
   },[]);
   
   // 처음 클릭된 대화방 대화 가져오기
   useEffect(()=>{
-    fetchThreadMessages(thread, setThread, selectedRoom);
+    hadnleGetRoomMessages();
   },[]);
 
   return (
     <div className="chat-page">
       <div className="left-panel">
         <ChatbotList bots={bots} onBotClick={handleBotClick} onBotCreate={handleCreateBot} />
-        <ChatroomList rooms={rooms} onRoomClick={handleRoomClick} onRoomCreate={handleCreateRoom} userInfo={userInfo}/>
+        <ChatroomList rooms={rooms} onRoomClick={handleSelectRoom} onRoomCreate={handleCreateRoom} userInfo={userInfo}/>
       </div>
       <div className='chat-window'>
         <ChatContextInfo 
@@ -74,8 +76,8 @@ const Chat: React.FC<ChatProps> = ({ userInfo }) => {
           : <ChatMessages messages={[]} />
         }
         <ChatInput 
-          onSend={handleSend} 
-          onReceive={handleReceive} 
+          onSend={handleSendMessage} 
+          onReceive={handleReceiveMessage} 
           input={input} 
           setInput={setInput} 
         />
