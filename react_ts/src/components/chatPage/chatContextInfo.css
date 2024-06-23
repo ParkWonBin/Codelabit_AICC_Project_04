@@ -1,0 +1,31 @@
+.chat-header {
+  display: flex;
+  padding: 10px;
+  background-color: #b2c8dd;
+  border-bottom: 1px solid;
+  border-color: #77848F;
+  border-top: 0;
+}
+
+.chat-header>span {
+  flex-grow: 1;
+  text-align: left;
+}
+
+.chat-header>button {
+  margin-left: 10px;
+}
+
+.chat-header>button:nth-child(2) {
+  border: none;
+  font-weight: bolder;
+  color: black;
+  background-color: orange;
+}
+
+.chat-header>button:nth-child(3) {
+  border: none;
+  font-weight: bolder;
+  color: white;
+  background-color: crimson;
+}

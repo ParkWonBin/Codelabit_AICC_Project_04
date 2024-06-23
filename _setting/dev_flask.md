@@ -68,3 +68,34 @@ if __name__ == '__main__':
 ```powershell
 flask run
 ```
+
+-----
+
+## 파일구조 확인
+```
+flask_main/
+│
+├── app.py
+├── config.py
+├── models.py
+├── routes/
+│   ├── gpt_assistant.py
+│   └── gpt_thread.py
+├── utils/
+│   └── db.py
+├── .env
+└── requirements.txt
+```
+
+### 각 파일의 간단한 설명
+
+- **app.py**: Flask 애플리케이션의 엔트리 포인트로, 블루프린트를 등록하고 서버를 실행합니다.
+- **config.py**: 환경 변수를 로드하고 Flask 설정을 관리합니다.
+- **models.py**: 데이터베이스 모델 정의 (해당 예제에서는 사용하지 않음).
+- **routes/**: Flask 블루프린트를 사용하여 API 엔드포인트를 정의합니다.
+  - **gpt_assistant.py**: OpenAI Assistants API와 통신하는 엔드포인트를 정의합니다.
+  - **gpt_thread.py**: GPT Thread와 관련된 엔드포인트를 정의합니다.
+- **utils/**: 유틸리티 함수 및 데이터베이스 초기화 코드를 포함합니다.
+  - **db.py**: Oracle 데이터베이스와의 연결을 관리합니다.
+- **.env**: 중요한 환경 변수를 저장합니다.
+- **requirements.txt**: 프로젝트에서 필요한 Python 패키지를 나열합니다.

@@ -1,0 +1,23 @@
+.input-area {
+    display: flex;
+    background-color: white;
+    height: 10%;
+    max-height: 60px;
+    min-height: 50px;
+    border-top: 1px solid lightgray;
+}
+.input-area *{
+    border: none;
+}
+
+.input-area>input {
+    flex-grow: 1;
+}
+
+.input-area>button {
+    width: 15%;
+    border-left: 1px solid lightgray;
+}
+.input-area>button:hover {
+    background-color: lightgray;
+}

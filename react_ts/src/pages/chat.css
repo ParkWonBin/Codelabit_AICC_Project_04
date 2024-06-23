@@ -1,0 +1,32 @@
+/* src/styles/ChatPage.css */
+
+.chat-page {
+  display: flex;
+  height: 100vh;
+  width: 100%;
+}
+
+.left-panel > .list-container:first-child {
+  border-bottom: 1px solid black;
+}
+.left-panel {
+  display: flex;
+  flex-direction: column;
+  height: calc(100% - 80px); ;
+  width: 40%;
+  min-width: 170px;
+  max-width: 200px;
+  background-color: #FEE500;
+  padding: 5px;
+  border-right: 1px solid;
+  border-color: black;
+}
+
+.chat-window {
+  flex: 1;
+  flex-direction: column;
+  
+  display: flex;
+  max-width: 600px;
+  height: calc(100% - 70px); ;
+}

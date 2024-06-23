@@ -1,0 +1,53 @@
+.messages {
+    flex: 1;
+    padding: 10px;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    background-color: #BACEE0;
+}
+
+.message {
+    margin-bottom: 10px;
+    max-width: 70%;
+    min-width: 30%;
+}
+
+.message > div{
+    overflow-x: auto;
+    white-space: pre-wrap; 
+}
+
+.message.user {
+    align-self: flex-end;
+    /* 사용자 메시지를 오른쪽으로 정렬 */
+    text-align: right;
+}
+
+.message.user>strong {
+    margin-right: 5px;
+}
+
+.message.user>div {
+    padding: 10px;
+    border-radius: 10px;
+    background-color: #FEE500;
+    text-align: left;
+}
+
+.message.assistant {
+    align-self: flex-start;
+    /* 봇 메시지를 왼쪽으로 정렬 */
+    text-align: left;
+}
+
+.message.assistant>strong {
+    margin-left: 5px;
+}
+
+.message.assistant>div {
+    background-color: white;
+
+    padding: 10px;
+    border-radius: 10px;
+}
