@@ -1,9 +1,3 @@
-export interface Chatcontext {
-    bot?: Bot;
-    room?: Room;
-    masageList?: {string: Message[]}
-}
-
 export interface Message {
     sender_id: string|null;
     role: string;

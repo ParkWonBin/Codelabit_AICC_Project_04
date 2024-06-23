@@ -17,11 +17,7 @@ interface ChatProps {
 }
 
 const Chat: React.FC<ChatProps> = ({ userInfo }) => {
-  const { bots, setBots, 
-    rooms, setRooms, thread, setThread,
-    selectedBot, selectedRoom, 
-    input, setInput 
-  } = useChatContext();
+  const { bots, rooms, input, setInput } = useChatContext();
     
   const {
     handleGetBotList,
@@ -40,7 +36,6 @@ const Chat: React.FC<ChatProps> = ({ userInfo }) => {
   } = useChatHandlersRoom();
   
   const {
-    hadnleGetRoomMessages,
     handleSendMessage,
     handleReceiveMessage
   } = useChatHandlersMessage();
@@ -51,30 +46,28 @@ const Chat: React.FC<ChatProps> = ({ userInfo }) => {
     handleGetBotList()
   },[]);
   
-  // 처음 클릭된 대화방 대화 가져오기
-  useEffect(()=>{
-    hadnleGetRoomMessages();
-  },[]);
-
   return (
     <div className="chat-page">
       <div className="left-panel">
-        <ChatbotList bots={bots} onBotClick={handleBotClick} onBotCreate={handleCreateBot} />
-        <ChatroomList rooms={rooms} onRoomClick={handleSelectRoom} onRoomCreate={handleCreateRoom} userInfo={userInfo}/>
+        <ChatbotList bots={bots} 
+          onBotClick={handleBotClick}
+          onBotCreate={handleCreateBot} 
+        />
+        <ChatroomList rooms={rooms} 
+          onRoomClick={handleSelectRoom}
+          onRoomCreate={handleCreateRoom}
+          userInfo={userInfo}
+        />
       </div>
       <div className='chat-window'>
         <ChatContextInfo 
-          chatContext={{ bot: selectedBot ?? undefined, room: selectedRoom ?? undefined }} 
           onBotUpdate={handleUpdateBot} 
           onBotDelete={handleDeleteBot} 
           onRoomUpdate={handleUpdateRoom} 
           onRoomDelete={handleDeleteRoom} 
           userInfo={userInfo}
         />
-        {selectedRoom?.id
-          ? <ChatMessages messages={thread[selectedRoom.id] ?? []} />
-          : <ChatMessages messages={[]} />
-        }
+        <ChatMessages/>
         <ChatInput 
           onSend={handleSendMessage} 
           onReceive={handleReceiveMessage} 

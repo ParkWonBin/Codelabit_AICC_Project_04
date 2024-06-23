@@ -1,5 +1,6 @@
 import { Message } from '../types/chat';
 import { useChatContext } from '../contexts/chatContext';
+import { GetRoomMessages } from '../hooks/useChatDataMessage'
 
 export const useChatHandlersMessage = () => {
   const { thread, setThread, selectedBot, selectedRoom,input,setInput } = useChatContext();
@@ -42,28 +43,8 @@ export const useChatHandlersMessage = () => {
     });    
   };
 
-  const hadnleGetRoomMessages = async () => {
-    if (!selectedRoom || thread[selectedRoom.id]) {return}
-  
-    alert(`${selectedRoom.name} 챗팅방의 대화목록 가져오기`);
-    let msglist: Message[] = [];
-    if (selectedRoom.id === 't1') {
-      msglist = [
-        { sender_id: 'a1', role: 'assistant', content: 'Hi there!' },
-        { sender_id: null, role: 'user', content: 'Hello' }
-      ];
-    } else {
-      msglist = [
-        { sender_id: 'a2', role: 'assistant', content: 'test!' },
-        { sender_id: null, role: 'user', content: '123' }
-      ];
-    }
-  
-    setThread(prevThread => ({ ...prevThread, [selectedRoom.id]: msglist }));
-  };
 
   return {
-    hadnleGetRoomMessages,
     handleSendMessage,
     handleReceiveMessage
   };

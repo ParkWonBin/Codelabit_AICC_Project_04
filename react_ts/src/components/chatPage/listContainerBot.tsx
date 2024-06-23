@@ -1,6 +1,6 @@
 import React from 'react';
 import ListContainer from './listContainer';
-import { Bot, Chatcontext } from '../../types/chat';
+import { Bot } from '../../types/chat';
 
 interface ChatbotListProps {
     bots: Bot[];

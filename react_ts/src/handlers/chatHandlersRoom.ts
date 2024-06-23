@@ -1,9 +1,12 @@
-import { Room } from '../types/chat';
+import { Room, Message } from '../types/chat';
 import { UserInfo } from '../types';
 import { useChatContext } from '../contexts/chatContext';
 
+import { GetRoomMessages } from '../hooks/useChatDataMessage'
+
+
 export const useChatHandlersRoom = () => {
-  const { rooms, setRooms, setSelectedRoom } = useChatContext();
+  const { rooms, setRooms, setThread, setSelectedRoom, thread } = useChatContext();
 
   const handleCreateRoom = (userInfo:UserInfo) => {
     const newRoom : Room = {
@@ -26,9 +29,16 @@ export const useChatHandlersRoom = () => {
     setSelectedRoom(null);
   };
 
-  const handleSelectRoom = (room: Room) => {
-    setSelectedRoom(room);
+  const handleSelectRoom = async (room: Room) => {
     alert(`${room.name} 선택`);
+    
+    if (!thread[room.id] || thread[room.id].length === 0) {
+      alert(`${room.name} 챗팅방의 대화목록 가져오기`);
+      const msglist: Message[] = await GetRoomMessages(room.id);
+      setThread(prevThread => ({ ...prevThread, [room.id]: msglist }));
+    }
+    
+    setSelectedRoom(room);
   };
 
   const handleGetRoomList = async () => {
