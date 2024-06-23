@@ -16,14 +16,8 @@ export const CreateRoom = async ():Promise<{ thread_id: string|null }> => {
     }
 
     const data = await response.json();
-<<<<<<< HEAD
     return data;
 
-=======
-
-    return data;
-    
->>>>>>> d995b5c04c87f2a4b91bd048d3d8645ae6cebcca
   } catch (error) {
     console.error('There was a problem with the fetch operation:', error);
     throw error;

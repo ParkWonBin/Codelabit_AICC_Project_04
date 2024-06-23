@@ -1,18 +1,50 @@
 import { Bot } from '../types/chat';
 import { useChatContext } from '../contexts/chatContext';
-import { getBotList } from '../hooks/useChatDataBot'
+import { getBotList, CreateBot } from '../hooks/useChatDataBot'
 
 export const useChatHandlersBot = () => {
-  const { bots, setBots, setSelectedBot } = useChatContext();
+  const { bots, setBots, setSelectedBot, setModalProps} = useChatContext();
 
   const handleCreateBot = () => {
-    const newBot : Bot = {
-      id: 'a3',
-      name: 'Bot 3'
-    }
-    setBots([...bots, newBot ])
 
-    alert(`챗봇 생성`);
+    const onSubmit = async  (formData: Record<string, string>)=>{
+
+      alert(JSON.stringify(formData, null, 2));
+
+      const newBot: Bot | undefined = await CreateBot({
+        id: formData.id,
+        name: formData.name,
+        description: formData.description,
+        instructions: formData.instructions,
+      });
+
+      if (newBot){
+        setBots([newBot, ...bots ])
+      }
+    }
+    // alert(`챗봇 생성`);
+
+    
+    // 채팅방 생성
+    setModalProps({
+      visible: true,
+      title: "챗봇 생성",
+      onSubmit: onSubmit,
+      data: [
+        { label: '챗봇이름', key: 'name', type: 'input', value: 'Math Tutor' },
+        { label: '지시사항', key: 'instructions', type: 'textarea', value: 'You are a personal math tutor. When asked a question, write and run Python code to answer the question', rows: 5 },
+        { label: 'Model', key: 'model', type: 'select', 
+          value: 'gpt-3.5-turbo', 
+          options: [
+            'gpt-4.0', 
+            'gpt-4-turbo', 
+            'gpt-3.5-turbo-16k', 
+            'gpt-3.5-turbo-0125', 
+            'gpt-3.5-turbo'
+          ] 
+        }
+      ]
+    });
   };
 
   const handleUpdateBot = (bot: Bot) => {
