@@ -50,7 +50,6 @@ export const useChatHandlersRoom = () => {
       { id: 'thread_HuHmrKPXJ8HYOh8eraYs1iKr', name: '쇼핑몰 서비스' },
       { id: 'thread_DL1Dwph6ODDHHHhoRPRaJhGA', name: '게임 개발' }
     ];
-  
     setRooms(roomlist);
 };
 

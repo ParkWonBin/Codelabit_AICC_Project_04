@@ -13,9 +13,22 @@ const ChatInput: React.FC<ChatInputProps> = ({ onSend, onReceive, input, setInpu
     setInput(e.target.value);
   };
 
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === 'Enter') {
+      e.preventDefault();
+      onSend(input)
+      onReceive();
+    }
+  };
+
   return (
-    <div className="input-area">
-      <input type="text" placeholder="메시지 입력" value={input} onChange={handleInputChange} />
+  <div className="input-area">
+      <input
+        placeholder="메시지 입력"
+        value={input}
+        onChange={handleInputChange}
+        onKeyDown={handleKeyDown}
+      />
       <button onClick={() => onSend(input)}>보내기</button>
       <button onClick={onReceive}>답변받기</button>
     </div>

@@ -1,4 +1,8 @@
 export interface Message {
+    id:string;
+    thread_id:string;
+    created_at:string;
+
     sender_id: string|null;
     role: string;
     content: string;
