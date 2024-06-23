@@ -16,6 +16,7 @@ export interface Item {
 }
 
 export interface Bot extends Item {
+    model?:string;
     description?: string;
     instructions?: string;
     temperature?: number;
