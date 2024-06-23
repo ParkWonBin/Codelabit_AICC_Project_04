@@ -27,5 +27,6 @@
   flex-direction: column;
   
   display: flex;
+  max-width: 600px;
   height: calc(100% - 70px); ;
 }

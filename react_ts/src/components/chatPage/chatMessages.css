@@ -9,8 +9,13 @@
 
 .message {
     margin-bottom: 10px;
-    max-width: 60%;
+    max-width: 70%;
     min-width: 30%;
+}
+
+.message > div{
+    overflow-x: auto;
+    white-space: pre-wrap; 
 }
 
 .message.user {

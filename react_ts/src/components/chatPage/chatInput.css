@@ -4,6 +4,7 @@
     height: 10%;
     max-height: 60px;
     min-height: 50px;
+    border-top: 1px solid lightgray;
 }
 .input-area *{
     border: none;

@@ -76,8 +76,9 @@ export const useChatHandlersRoom = () => {
     
     alert("채팅방 목록 가져오기");
     const roomlist: Room[] = [
+      { id: 'thread_svpiCVMUbJUrL7xPtxBAcPai', name: '부동산 계약 상담' },
       { id: 'thread_yoy6IUWNMMaEnMfflrqpzYY0', name: '모바일 게임 개발' },
-      { id: 'thread_rbxeQ7knR8dfgE3IhY90rHUC', name: '임대 사기 상담' }
+      { id: 'thread_rbxeQ7knR8dfgE3IhY90rHUC', name: '개발용 테스트' }
     ];
     setRooms(roomlist);
 };
