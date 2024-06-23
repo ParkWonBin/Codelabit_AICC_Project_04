@@ -76,11 +76,8 @@ export const useChatHandlersRoom = () => {
     
     alert("채팅방 목록 가져오기");
     const roomlist: Room[] = [
-      { id: 'thread_RC4QHo9c5kd5P3vYTudUCgFt', name: '테스트용' },
-      { id: 'thread_ElCxy8ubjerOWDWZfRVH3Fj0', name: '연결완료' },
-      { id: 'thread_rbxeQ7knR8dfgE3IhY90rHUC', name: '임대 사기 상담' },
-      { id: 'thread_HuHmrKPXJ8HYOh8eraYs1iKr', name: '쇼핑몰 서비스' },
-      { id: 'thread_DL1Dwph6ODDHHHhoRPRaJhGA', name: '게임 개발' }
+      { id: 'thread_yoy6IUWNMMaEnMfflrqpzYY0', name: '모바일 게임 개발' },
+      { id: 'thread_rbxeQ7knR8dfgE3IhY90rHUC', name: '임대 사기 상담' }
     ];
     setRooms(roomlist);
 };

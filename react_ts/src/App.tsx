@@ -13,11 +13,7 @@ const App: React.FC = () => {
   const [selectedMenu, setSelectedMenu] = useState<Menu>('mypage');
 
   const [userInfo, setUserInfo] = useState<UserInfo>({
-    id:1,
-    username:"a",
-    email:"a@a",
-    token:"",
-    isLoggedIn:true
+    isLoggedIn:false,id:0,username:"",email:"",token:""
   });
 
   const renderPage = () => {

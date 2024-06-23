@@ -36,6 +36,7 @@ const LoginForm: React.FC<LoginProps> = ({ setUserInfo }) => {
         <button type="submit">로그인</button>
       </form>
       <button type="button" onClick={() => setIsRegistering(true)}>회원가입</button>
+      <button type="button" onClick={() => setUserInfo({isLoggedIn:true,id:0,username:"게스트",email:"guest@wbpark.app",token:""})}>게스트 로그인</button>
     </div>
   );
   

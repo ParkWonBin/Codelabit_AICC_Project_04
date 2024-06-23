@@ -29,7 +29,7 @@ export const ChatProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
   const [selectedRoom, setSelectedRoom] = useState<Room | null>(null);
   const [input,setInput] = useState<string>("");
   const [modalProps, setModalProps] = useState<ModalProps>({
-    visible: true,
+    visible: false,
     title: "title",
     onSubmit(formData) {alert(JSON.stringify(formData,null,2))},
     data: [
