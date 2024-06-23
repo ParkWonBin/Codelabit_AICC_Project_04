@@ -2,7 +2,7 @@ import { Message } from '../types/chat';
 
 const REACT_APP_FLASK_URL = process.env.REACT_APP_FLASK_URL || 'http://localhost:5001';
 
-export const GetRoomMessages = async (thread_id: string): Promise<Message[]> => {
+export const GetMessages = async (thread_id: string): Promise<Message[]> => {
     let msglist: Message[] = [];
   
     try {

@@ -1,5 +1,6 @@
 import React, { createContext, useContext, useState, ReactNode } from 'react';
 import { Bot, Room, Message } from '../types/chat';
+import { ModalProps } from '../types';
 
 interface ChatContextType {
   bots: Bot[];
@@ -14,6 +15,8 @@ interface ChatContextType {
   setSelectedRoom: React.Dispatch<React.SetStateAction<Room | null>>;
   input:string;
   setInput:React.Dispatch<React.SetStateAction<string>>;
+  modalProps:ModalProps;
+  setModalProps:React.Dispatch<React.SetStateAction<ModalProps>>;
 }
 
 const ChatContext = createContext<ChatContextType | undefined>(undefined);
@@ -25,11 +28,21 @@ export const ChatProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
   const [selectedBot, setSelectedBot] = useState<Bot | null>(null);
   const [selectedRoom, setSelectedRoom] = useState<Room | null>(null);
   const [input,setInput] = useState<string>("");
+  const [modalProps, setModalProps] = useState<ModalProps>({
+    visible: true,
+    title: "title",
+    onSubmit(formData) {alert(JSON.stringify(formData,null,2))},
+    data: [
+      { label: 'test1', key:'key1',type: 'input', value:'test1'},
+      { label: 'test2', key:'key2',type: 'textarea', value:'test2', rows: 5 },
+      { label: 'test3', key:'key3',type: 'select', value:'c', options: ['a', 'b', 'c', 'd'] }
+    ]
+  });
 
   return (
     <ChatContext.Provider value={{ 
       bots, setBots, rooms, setRooms, thread, setThread, input, setInput,
-      selectedBot, setSelectedBot, selectedRoom, setSelectedRoom 
+      selectedBot, setSelectedBot, selectedRoom, setSelectedRoom, modalProps, setModalProps
     }}>
       {children}
     </ChatContext.Provider>

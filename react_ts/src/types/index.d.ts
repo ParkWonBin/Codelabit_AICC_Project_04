@@ -7,3 +7,18 @@ export interface UserInfo {
   token:string;
   isLoggedIn: boolean;
 }
+
+export interface ModalProps {
+  visible: boolean;
+  title: string;
+  onSubmit?: (formData: Record<string, string>) => Promise<void> | void;
+  onClose?: (formData: Record<string, string>) => Promise<void> | void;
+  data?: {
+    label: string;
+    key: string;
+    value: string;
+    type: "input" | "select" | "textarea";
+    options?: string[]; 
+    rows?:number;
+  }[];
+}

@@ -3,7 +3,7 @@ import { useChatContext } from '../contexts/chatContext';
 import { sendMessage, receiveMessage } from '../hooks/useChatDataMessage'
 
 export const useChatHandlersMessage = () => {
-  const { thread, setThread, selectedBot, selectedRoom,input,setInput } = useChatContext();
+  const { setThread, selectedBot, selectedRoom,input,setInput } = useChatContext();
 
   const handleSendMessage = async () => {
     if (!input || !selectedRoom) { 
