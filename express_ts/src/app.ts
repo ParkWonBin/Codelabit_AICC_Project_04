@@ -1,8 +1,9 @@
 import express, { Application } from 'express';
 import userRoutes from './routes/userRoutes';
 import oracledb from 'oracledb';
+import path from 'path'
+ 
 import config from './config/dbConfig';
-
 import cors from 'cors';
 
 
@@ -14,6 +15,8 @@ app.use(cors());
 app.use(express.json());
 
 // 라우터
+const buildPath = path.join(__dirname, '../build')
+app.use(express.static(buildPath)) 
 app.use('/api/users', userRoutes);
 
 //db 
@@ -25,5 +28,3 @@ oracledb.createPool(config)
   .catch((error: Error) => console.error('Oracle DB connection error:', error));
 
 export default app;
-
-
