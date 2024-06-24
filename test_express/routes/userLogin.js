@@ -20,9 +20,13 @@ router.post('/', async(req, res) => {
 
     const result = await conn.execute(sql, bind);
 
-    if(result !==null){
+    if(result.rows.length > 0){
         req.session.username = username;
         res.redirect('/postMain');
+    }
+
+    else{
+        res.redirect('/');
     }
 });
 
