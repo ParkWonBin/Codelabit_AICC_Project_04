@@ -28,6 +28,10 @@
             border: 1px solid black;
             width: 60px;
         }
+        .link {
+            color: floralwhite;
+            text-decoration: none;
+        }
     </style>
 </head>
 <body>
@@ -45,7 +49,7 @@
             <% posts.data.forEach(post => { %>
                 <tr>
                     <td style="text-align: center"><%= post.postid %></td>
-                    <td><a href="/postDetail/<%= post.postid %>"><%= post.title %></a></td>
+                    <td><a href="/postDetail/<%= post.postid %>" class="link"><%= post.title %></a></td>
 
                     <td style="text-align: center"><%= post.author %></td>
                     <td id="dedate">
