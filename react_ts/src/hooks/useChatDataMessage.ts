@@ -6,7 +6,7 @@ export const GetMessages = async (thread_id: string): Promise<Message[]> => {
     let msglist: Message[] = [];
   
     try {
-      const response = await fetch(`http://localhost:5001/api/thread/${thread_id}`, {
+      const response = await fetch(`${process.env.REACT_APP_FLASK_URL}/api/thread/${thread_id}`, {
         method: 'GET',
         headers: {'Content-Type': 'application/json'}
       });
